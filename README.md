@@ -1,6 +1,6 @@
 # xihxih.github.io
 ## JS作业2023-3-1
-1. (左右飞入的盒子)[./dom/左右飞入的盒子/飞入的盒子.html]
+1. [左右飞入的盒子](./dom/左右飞入的盒子/飞入的盒子.html)
 2. 递归文字动画（setTimeout slice() 递归）
 3. 微博录入统计(composition事件)
 4. 用户注册页(location slice() split())
