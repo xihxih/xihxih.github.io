@@ -61,9 +61,18 @@
         })
         text.addEventListener('input', function () {
             if (flag) {
-                str = String(text.value)
+                str = text.value
                 num = str.length
-                p.innerHTML = num
+                if (num === 200) {
+                    p.style.color = 'red'
+                    p.innerHTML = 0
+                } else if (num > 200) {
+                    p.style.color = 'red'
+                    p.innerHTML = 200 - num
+                } else {
+                    p.innerHTML = num
+                    p.style.color = 'black'
+                }
             }
         })
     </script>
