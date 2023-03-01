@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            width: 30px;
+        }
+
+        .box {
+            display: flex;
+            justify-content: space-around;
+            width: 100px;
+            position: absolute;
+            left: calc(50% - 50px);
+            top: 90%;
+        }
+
+        h1 {
+            width: 300px;
+            position: absolute;
+            text-align: center;
+            left: calc(50% - 150px);
+            top: calc(50% - 30px);
+        }
+    </style>
+</head>
+
+<body>
+    <h1></h1>
+    <div class="box"><span>速度</span><input type="number" value="0"></div>
+    <script>
+        const sd = document.querySelector('input')
+        const h1 = document.querySelector('h1')
+        const str = 'emo，自闭，还抑郁...'
+        let n = 0
+        const arr = [300,200,150,100,80,50,20]
+        let timer
+        si(arr[0])
+        function si(x) {
+            timer =  setInterval(ev => {
+                n++
+                let zsd = sd.value
+                h1.innerHTML = str.slice(0, n)
+                if (n === str.length) {
+                    n = 0
+                }
+            }, x)
+        }
+        sd.addEventListener('input', ev => {
+            clearInterval(timer)
+            if(sd.value < 0 ){
+                sd.value = 0
+            }else if(sd.value > 6){
+                sd.value = 6
+            }
+            si(arr[sd.value])
+        })
+    </script>
+</body>
+
+</html>

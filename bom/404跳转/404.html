@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            font-size: 200px;
+            position: absolute;
+            left: calc(50% - 100px);
+            top: calc(50% - 100px);
+            opacity: 0;
+        }
+        .active{
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <p></p>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <div class="box4">4</div>
+    <div class="box5">5</div>
+    <script>
+        let num = 4
+        const p = document.querySelector('p')
+        const boxArr = document.querySelectorAll('div')
+        let timer
+        boxArr[num].classList.add('active')
+        p.innerHTML = `对不起，您访问的页面不存在，将在${num+1}秒之后跳转到首页`
+        timer = setInterval(function () {
+           
+            if (num === 0) {
+                // boxArr[1].classList.remove('active')
+                // boxArr[0].classList.add('active')
+                // p.innerHTML = `对不起，您访问的页面不存在，将在0秒之后跳转到首页`
+                location = 'https://www.sina.com.cn'
+                clearInterval(timer)
+            } else {
+                num--
+                boxArr[num + 1].classList.remove('active')
+                boxArr[num].classList.add('active')
+                p.innerHTML = `对不起，您访问的页面不存在，将在${num+1}秒之后跳转到首页`
+            }
+            
+        }, 1000)
+    </script>
+</body>
+
+</html>

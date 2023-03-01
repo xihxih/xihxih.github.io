@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="success">
+        <p>注册成功！您的信息如下</p>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+        const liArr = document.querySelectorAll('li')
+        const queryStr = window.location.search
+        let loStr  = queryStr.slice(1).split('&')
+        let yx = decodeURIComponent(loStr[0].split('=')[1])
+        let mm = loStr[1].split('=')[1]
+        let dh = decodeURIComponent(loStr[2].split('=')[1]) 
+        console.log(yx,mm,dh)
+        liArr[0].innerHTML = '邮箱：' + yx
+        liArr[1].innerHTML = '密码：' + mm
+        liArr[2].innerHTML = '电话：' + dh
+    </script>
+</body>
+</html>
