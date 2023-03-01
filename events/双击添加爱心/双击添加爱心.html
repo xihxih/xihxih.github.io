@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 2px solid black;
+        }
+
+        .aixin {
+            width: 100px;
+            position: absolute;
+            opacity: 0;
+            transition: .5s;
+        }
+
+        .aixin.active {
+            opacity: 1;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1></h1>
+    <div class="box">
+        <img src="./images/红衣.jpg" alt="红衣">
+    </div>
+    <script>
+        const box = document.querySelectorAll('img')[0]
+        const h1 = document.querySelector('h1')
+        let num = 0
+        h1.innerHTML = `点赞次数${num}次`
+        box.addEventListener('dblclick', ev => {
+            let timer1, timer2
+            num++
+            let love = document.createElement('img')
+            love.classList.add('aixin')
+            love.src = './images/爱心.jpg'
+            document.body.appendChild(love)
+            love.style.top = ev.pageY - 50 + 'px'
+            love.style.left = ev.pageX - 50 + 'px'
+            timer1 = setTimeout(function () {
+                love.classList.add('active')
+                clearTimeout(timer1)
+            })
+            timer2 = setTimeout(function () {
+                love.classList.remove('active')
+                clearTimeout(timer2)
+                setTimeout(function () {
+                    love.remove()
+                }, 500)
+            }, 500)
+            h1.innerHTML = `点赞次数${num}次`
+        })
+    </script>
+</body>
+
+</html>

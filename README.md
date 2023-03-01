@@ -6,4 +6,4 @@
 4. [用户注册页(location slice() split())](./bom/%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E9%A1%B5/denglu.html)
 5. [404页面跳转(location setInterval())](./bom/404%E8%B7%B3%E8%BD%AC/404.html)
 6. [球的口字运动(``)](./movement/%E7%90%83%E7%9A%84%E5%8F%A3%E5%AD%97%E8%BF%90%E5%8A%A8/move.html)
-7. [双击添加爱心]()
+7. [双击添加爱心](./events/%E5%8F%8C%E5%87%BB%E6%B7%BB%E5%8A%A0%E7%88%B1%E5%BF%83/%E5%8F%8C%E5%87%BB%E6%B7%BB%E5%8A%A0%E7%88%B1%E5%BF%83.html)

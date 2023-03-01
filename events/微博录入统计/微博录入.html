@@ -50,30 +50,22 @@
         const p = document.querySelector("p")
         let str
         let num = 0
-        text.value = " "
+        text.value = ""
         let flag = true
 
-        window.addEventListener('compositionstart', function () {
+        text.addEventListener('compositionstart', function () {
             flag = false
         })
-        window.addEventListener('compositionend', function () {
+        text.addEventListener('compositionend', function () {
             flag = true
-            num = 0
-                str = String(text.value)
-                num = str.length
-                p.innerHTML = num
-                console.log(2);
         })
-        text.addEventListener("input", function () {
+        text.addEventListener('input', function () {
             if (flag) {
-                num = 0
                 str = String(text.value)
                 num = str.length
                 p.innerHTML = num
-                console.log(2);
             }
         })
-        // text.
     </script>
 </body>
 
