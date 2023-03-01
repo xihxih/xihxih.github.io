@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            position: absolute;
+            left: 0px;
+            top: 0;
+        }
+    </style>
+</head>
+<script src="myFn.js"></script>
+
+<body>
+    <div class="box"></div>
+    <script>
+        const box = document.querySelector('.box')
+        let timer
+        function moveFn(el,attr,target,step,speed,cb) {
+            step = parseFloat(getStyle(el, attr)) > target ? -step : step
+            clearInterval(timer)
+            timer = setInterval(function () {
+                let temp = parseFloat(getStyle(el, attr))
+                let attrValue = temp + step
+                if(attrValue > target && step > 0 || attrValue < target && step < 0){
+                    attrValue = target
+                    clearInterval(timer)
+                }
+                el.style[attr] = attrValue + 'px'
+                if( attrValue === target){
+                    cb && cb()
+                }
+            },speed)
+        }
+        moveFn(box,'left',500,20,30,function(){
+            moveFn(box,'top',500,20,30,function(){
+                moveFn(box,'left',0,20,30,function(){
+                    moveFn(box,'top',0,20,30)
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

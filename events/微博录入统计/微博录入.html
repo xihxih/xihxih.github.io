@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            width: 300px;
+            height: 250px;
+            padding: 10px;
+        }
+
+        form {
+            margin: 50px auto;
+            width: 300px;
+        }
+
+        p {
+            margin: 5px auto;
+            width: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <textarea name="" id="" cols="300" rows="100">
+        </textarea>
+        <p>0</p>
+    </form>
+    <!--  
+        合成事件：composition事件：compositionstart合成开始(on=false)
+         compositionend合成结束(on=true)
+        if(on){
+            统计字数
+        }
+    -->
+    <script>
+        //获取textarea的value值
+        const text = document.querySelector("textarea")
+        const p = document.querySelector("p")
+        let str
+        let num = 0
+        text.value = " "
+        let flag = true
+
+        window.addEventListener('compositionstart', function () {
+            flag = false
+        })
+        window.addEventListener('compositionend', function () {
+            flag = true
+            num = 0
+                str = String(text.value)
+                num = str.length
+                p.innerHTML = num
+                console.log(2);
+        })
+        text.addEventListener("input", function () {
+            if (flag) {
+                num = 0
+                str = String(text.value)
+                num = str.length
+                p.innerHTML = num
+                console.log(2);
+            }
+        })
+        // text.
+    </script>
+</body>
+
+</html>
