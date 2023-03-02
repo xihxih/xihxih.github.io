@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>登录页</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            background-image: url(./preview.gif);
+            background-size: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 16px;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+        }
+
+        #login-box {
+            background-color: #0005;
+            padding: 40px;
+            border-radius: 5px;
+        }
+
+        h1,
+        input,
+        button {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            padding: 20px 0 40px;
+            text-align: center;
+        }
+
+        form input {
+            width: 300px;
+            border: none;
+        }
+
+        form input:not([type="button"]) {
+            border-bottom: 1px solid white;
+            background-color: transparent;
+            outline: none;
+            height: 50px;
+            font-size: 20px;
+            left: 0;
+            top: 0;
+            padding: 10px 0;
+            color: white;
+            margin-bottom: 30px;
+        }
+        form input:not(input[type="button"]) + label span{
+            display: inline-block;
+            transition: .05s;
+        }
+        form input:not(input[type="button"]):focus + label span {
+            /* transform: translateY(-30px); */
+            transform: translateY(-30px);
+        }
+
+        form label {
+            position: absolute;
+            left: 0;
+            top: 15px;
+        }
+
+        .input {
+            position: relative;
+        }
+
+        [type="button"] {
+            /* margin-top: 20px; */
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #000a;
+            color: white;
+        }
+
+        [type="button"]:hover {
+            background-color: #000c;
+            cursor: pointer;
+
+        }
+
+        [type="button"]:active {
+            transform: scale(0.98);
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <div id="login-box">
+        <h1>登录</h1>
+        <form action="">
+            <div class="row input">
+                <input type="text" />
+                <label>Email</label>
+            </div>
+            <div class="row input">
+                <input type="password" />
+                <label>Password</label>
+            </div>
+            <div class="row input">
+                <input type="button" value="登錄" />
+            </div>
+        </form>
+        <p>沒有賬戶？請先<a href=" ">註冊</a>
+        </p>
+    </div>
+    <script>
+        const labs = document.querySelectorAll('label')
+        labs.forEach(lab => {
+            lab.innerHTML = lab.innerHTML.split('').map((item, index) => {
+                return `<span style = "transition-delay : ${index * 30}ms">${item}</span>`
+            }).join('')
+        })
+    </script>
+</body>
+
+</html>

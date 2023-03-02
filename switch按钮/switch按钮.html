@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-color: #333;
+            transition: .5s;
+        }
+        body.active{
+            background-color: white;
+        }
+        .box{
+            width: 200px;
+            height: 100px;
+            border: 5px solid black;
+            background-color: #333;
+            border-radius: 100px;
+            position: absolute;
+            left: calc(50% - 100px);
+            top: calc(50% - 25px);
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0px 0px 20px inset #000;
+            transition: .5s;
+        }
+        .box1{
+            height: 100px;
+            width: 100px;
+            background-color: black;
+            /* border: 1px solid black; */
+            box-shadow: 0px 0px 50px inset #fff5;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 99;
+            transition: .5s;
+            top: 0;
+            left: 0;
+        }
+        .box1.active{
+            background-color: white;
+            left: 100px;
+            box-shadow: 0px 0px 20px inset #0005;
+        }
+        .box.active{
+            border: 5px solid #999;
+            background-color: white;
+            box-shadow: 0px 0px 20px inset #0009;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="box1"></div>
+    </div>
+    <script>
+        const btn = document.querySelector('.box')
+        const btn1 = document.querySelector('.box1')
+        let on = true
+        btn.addEventListener('click',function(){
+            document.body.classList.toggle('active')
+            btn1.classList.toggle('active')
+            btn.classList.toggle('active')
+        })
+    </script>
+</body>
+
+</html>

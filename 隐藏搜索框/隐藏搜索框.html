@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_3925958_s8jtcl49p1s.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        input {
+            border-radius: 5px;
+            height: 50px;
+            width: 0;
+            border: 0;
+        }
+
+        .active {
+            width: 200px;
+        }
+
+        html {
+            background-color: blueviolet;
+        }
+
+        i {
+            width: 50px;
+            height: 50px;
+            display: block;
+            text-align: center;
+            line-height: 50px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+            /* background-color: white; */
+        }
+
+        .box {
+            display: flex;
+            position: absolute;
+            background-color: white;
+            left: 50%;
+            top: 50%;
+            width: 0;
+            transform: translateX(-50%);
+            border-radius: 5px;
+            transition: 1s;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"><input type="text"><i class="iconfont icon-sousuo"></i></div>
+    <script>
+        const box = document.querySelector('.box')
+        const inp = document.querySelector('input')
+        const i = document.querySelector('i')
+        box.style.width = i.offsetWidth + 'px'
+        i.addEventListener('click', ev => {
+            let e = ev || event
+            inp.classList.toggle('active')
+            box.style.width = 200 + 'px'
+            if (inp.offsetWidth === 0) {
+                box.style.width = i.offsetWidth + 'px'
+            }
+            
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul class="menu">
+        <li>
+            <a href="#">菜单1</a>
+            <button class="btn1">Up</button>
+            <button class="btn2">Down</button>
+        </li>
+        <li>
+            <a href="#">菜单2</a>
+            <button class="btn1">Up</button>
+            <button class="btn2">Down</button>
+        </li>
+        <li>
+            <a href="#">菜单3</a>
+            <button class="btn1">Up</button>
+            <button class="btn2">Down</button>
+        </li>
+        <li>
+            <a href="#">菜单4</a>
+            <button class="btn1">Up</button>
+            <button class="btn2">Down</button>
+        </li>
+        <li>
+            <a href="#">菜单5</a>
+            <button class="btn1">Up</button>
+            <button class="btn2">Down</button>
+        </li>
+    </ul>
+    <script>
+        const ul = document.querySelector('.menu')
+        const btn1 = Array.from(document.querySelectorAll('.btn1'))
+        const btn2 = Array.from(document.querySelectorAll('.btn2'))
+        btn1.forEach(x => {
+            x.addEventListener('click', () => {
+                ul.insertBefore(x.parentElement, x.parentElement.previousElementSibling)
+            })
+        })
+        btn2.forEach(x => {
+            x.addEventListener('click', () => {
+                if (x != ul.lastElementChild.lastElementChild) {
+                    ul.insertBefore(x.parentElement, x.parentElement.nextElementSibling.nextElementSibling)
+                } else if (x == ul.lastElementChild.lastElementChild) {
+                    ul.insertBefore(x.parentElement, ul.firstElementChild)
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .box {
+            width: 600px;
+        }
+
+        .box4 {
+            width: 600px;
+            display: flex;
+        }
+
+        .box1 {
+            width: 200px;
+            margin-right: -3px;
+            border-right: 3px solid #666;
+        }
+
+        .box1 button {
+            width: 180px;
+            margin: 10px auto;
+            height: 40px;
+            outline: none;
+        }
+
+        .box3 {
+            height: 30px;
+            line-height: 30px;
+            width: 400px;
+            display: flex;
+            justify-content: space-between;
+            padding-left: 10px;
+            border-left: 3px solid #666;
+        }
+
+        .box6 {
+            background-color: aqua;
+            width: 300px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h1>富豪排行榜</h1>
+        <div class="box4">
+            <div class="box1">
+                <button>增加富豪</button><br>
+                <button>加倍财富</button><br>
+                <button>富豪排行</button><br>
+                <button>仅显示百万+富豪</button><br>
+                <button>计算全部财富</button><br>
+            </div>
+            <div class="box2">
+                <div class="box3">
+                    <span>姓名</span>
+                    <span>财富</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const btn = document.querySelectorAll('button')
+        const box = document.querySelector('.box2')
+
+        var fh = []
+        var rm = [
+            ['赵', '钱', '孙', '欧阳', '李', '周', '吴', '郑', '王', '冯', '陈', '褚', '卫', '蒋', '沈', '韩', '杨', '朱', '秦', '尤', '许', '何', '吕', '施', '张', '孔', '曹', '严', '华', '金', '魏', '陶', '姜'],
+            ['伟', '芳', '娜', '敏', '静', '秀英', '浩然', '小蒙', '子轩', '欣怡', '梓涵', '浩宇', '雨桐', '子墨', '宇航']
+        ]
+        var rmb = ''
+
+        var np = ''
+        var Armb = 0
+
+        var txt = box.innerHTML
+
+        function ljs() {
+            fh.forEach(x => {
+                rmb += '<div class="box3">'
+                x.forEach(i => {
+                    rmb += `<span>${i}</span>`
+                })
+                rmb += '</div>'
+            })
+            box.innerHTML = txt
+            box.innerHTML += rmb
+            rmb = ''
+        }
+        btn[0].addEventListener('click', function () {
+            for (var i = 0; i < 6; i++) {
+                np += Math.floor(Math.random() * 10)
+            }
+            fh[fh.length] = [rm[0][Math.floor(Math.random() * rm[0].length)] + rm[1][Math.floor(Math.random() * rm[1].length)], np * 1,]
+            np = ''
+            ljs()
+        })
+
+        btn[2].addEventListener('click', function () {
+            fh.sort(function (a, b) {
+                return a[1] < b[1]
+            })
+            ljs()
+        })
+
+        btn[1].addEventListener('click', function () {
+            fh.forEach(x => {
+                x[1] = x[1] * 2
+            })
+            ljs()
+        })
+
+        btn[3].addEventListener('click', function () {
+            fh = fh.filter(x => {
+                return x[1] * 1 > 1000000
+            })
+            ljs()
+        })
+
+        btn[4].addEventListener('click', function () {
+           Armb = fh.reduce((a,b) => {
+                 return a += b[1]
+            },0)
+            fh.forEach(x => {
+                rmb += '<div class="box3">'
+                x.forEach(i => {
+                    rmb += `<span>${i}</span>`
+                })
+                rmb += '</div>'
+            })
+            box.innerHTML = txt
+            box.innerHTML += rmb + '<div class = "box6">总金额：' + Armb + '元</div>'
+            rmb = ''
+            Armb = 0
+        })
+    </script>
+</body>
+
+</html>
