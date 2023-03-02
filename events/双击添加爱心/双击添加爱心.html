@@ -55,7 +55,7 @@
             let love = document.createElement('i')
             love.classList.add('aixin', 'iconfont', 'icon-aixin')
             box.appendChild(love)
-            love.style.top = e.clientY - box.offsetTop + 'px'
+            love.style.top = e.clientY - box.offsetTop- love.offsetHeight/2 + 'px'
             love.style.left = e.clientX - box.offsetLeft - love.offsetWidth/2 + 'px'
             timer1 = setTimeout(function () {
                 love.classList.add('active')
