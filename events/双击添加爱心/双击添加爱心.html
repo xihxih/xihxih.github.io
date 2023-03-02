@@ -10,9 +10,12 @@
     <style>
         .box {
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            left: calc(50% - 250px);
             border: 2px solid black;
+            overflow: hidden;
+            background-image: url(./images/红衣.jpg);
+            width: 500px;
+            height: 800px;
         }
 
         .aixin {
@@ -38,21 +41,22 @@
 <body>
     <h1></h1>
     <div class="box">
-        <img src="./images/红衣.jpg" alt="红衣">
+
     </div>
     <script>
-        const box = document.querySelectorAll('img')[0]
+        const box = document.querySelector('.box')
         const h1 = document.querySelector('h1')
         let num = 0
         h1.innerHTML = `点赞次数${num}次`
         box.addEventListener('dblclick', ev => {
+            let e = ev || event
             let timer1, timer2
             num++
             let love = document.createElement('i')
-            love.classList.add('aixin','iconfont','icon-aixin')
-            document.body.appendChild(love)
-            love.style.top = ev.pageY - 50 + 'px'
-            love.style.left = ev.pageX - 50 + 'px'
+            love.classList.add('aixin', 'iconfont', 'icon-aixin')
+            box.appendChild(love)
+            love.style.top = e.clientY - box.offsetTop + 'px'
+            love.style.left = e.clientX - box.offsetLeft - love.offsetWidth/2 + 'px'
             timer1 = setTimeout(function () {
                 love.classList.add('active')
                 clearTimeout(timer1)
