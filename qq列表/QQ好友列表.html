@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            border: 1px solid black;
+            width: 200px;
+        }
+
+        img {
+            transform: rotate(-90deg);
+            vertical-align: middle;
+        }
+
+        h2 {
+            width: 200px;
+            height: 30px;
+            background-color: aqua;
+            line-height: 30px;
+            cursor: pointer;
+        }
+
+        li {
+            padding-left: 20px;
+            text-align: left;
+            list-style: none;
+            width: 180px;
+            height: 30px;
+            line-height: 30px;
+            border-bottom: 1px solid black;
+            cursor: pointer;
+        }
+
+        .ul{
+            height: 0;
+            overflow: hidden;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h2><img src=向下.png width="10px" />我的好友</h2>
+        <ul class="ul">
+            <li>
+                一群老六
+            </li>
+            <li>
+                一群老六
+            </li>
+            <li>
+                一群老六
+            </li>
+        </ul>
+        <h2><img src=向下.png width="10px" />企业好友</h2>
+        <ul class="ul">
+            <li>
+                好多老六
+            </li>
+            <li>
+                好多老六
+            </li>
+            <li>
+                好多老六
+            </li>
+            <li>
+                好多老六
+            </li>
+        </ul>
+        <h2><img src=向下.png width="10px" />黑名单</h2>
+        <ul class="ul">
+            <li>
+                陈有红
+            </li>
+            <li>
+                陈有红
+            </li>
+            <li>
+                陈有红
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        var h2 = document.querySelectorAll('h2')
+        var ul = document.querySelectorAll('ul')
+        var li = document.querySelectorAll('li')
+        var img = document.querySelectorAll('img')
+        
+
+        for (var i = 0; i < li.length; i++) {
+            li[i].num = false
+            li[i].onclick = function () {
+                if (this.num) {
+                    this.style.background = ''
+                    
+                } else {
+                    for(var j = 0 ; j < li.length ; j++){
+                        li[j].style.background = ''
+                        li[j].num = false
+                    }
+                    this.style.background = 'yellow'
+                }
+                this.num = !this.num
+            }
+        }
+
+        
+        for(let o = 0 ;o < h2.length ; o++){
+            h2[o].bt = false
+            h2[o].onclick = function(){
+                if(h2[o].bt){
+                    ul[o].className = 'ul'
+                    img[o].style.transform = 'rotate(-90deg)'
+                }else{
+                    for(var i = 0 ; i <ul.length; i++){
+                        ul[i].className = 'ul'
+                        h2[i].bt = false
+                        img[i].style.transform = 'rotate(-90deg)'
+                    }
+                    ul[o].className = ''
+                    img[o].style.transform = 'rotate(0deg)'
+                }
+                h2[o].bt = !h2[o].bt
+            }
+        }
+    </script>
+</body>
+
+</html>

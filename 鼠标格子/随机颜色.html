@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #333;
+        }
+        .box{
+            width: 1000px;
+            height: 1000px;
+            /* background-image: url(../../9/自定义属性/images/head3_100x100@2x.gif); */
+            background-size: 1000px;
+            display: flex;
+            flex-wrap: wrap;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .div1{
+            background-color: black;
+            height: 48px;
+            width: 48px;
+            border: 1px solid #333;
+            transition: 1s
+        }
+    </style>
+</head>
+<body>
+   <div class="box" id="box">
+
+   </div> 
+   <script>
+    var box = document.querySelector('#box')
+    var text = ''
+
+    for(var i = 0 ; i < 1000 ; i++){
+        text = text + '<div class="div1"></div>'
+    }
+
+    box.innerHTML = text
+    function Color(){
+        return Math.ceil(Math.random()*(255 - 125) + 125)
+    }
+    var nb = document.querySelectorAll('.div1')
+    for(var o = 0 ; o < nb.length ; o++){
+        nb[o].onmouseover = function(){
+            
+            this.style.background = `rgb(${Color()},${Color()},${Color()})`
+            setTimeout(ev=>{
+                this.style.background = ''  
+            },500)
+        }
+   }
+   </script>
+</body>
+</html>
