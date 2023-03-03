@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body.button {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 16px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 手风琴样式 */
+        #accordion {
+            width: 80vw;
+        }
+
+        button::after {
+            content: '+';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            transition: .5s;
+            border-radius: 50%;
+        }
+
+        button {
+            position: relative;
+            background-color: transparent;
+            width: 100%;
+            border: none;
+            padding: 20px;
+            text-align: left;
+            cursor: pointer;
+
+        }
+        button:hover{
+            background-color: transparent;
+        }
+        .content {
+            max-height: 0;
+            overflow: hidden;
+            font-size: 14px;
+            /* background-color: beige; */
+            transition: .3s;
+        }
+
+        .content p {
+            padding: 0px 20px;
+        }
+
+        .show::after {
+            content: 'X';
+            background-color: #3335;
+        }
+
+        .show+.content {
+            max-height: 200px;
+        }
+        .item{
+            border-radius: 6px;
+            background-color: antiquewhite;
+            border: 1px solid black;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- accordion 手风琴 -->
+    <h1>前端常见问题</h1>
+    <section id="accordion">
+        <div class="item">
+            <button>HTML常见问题</button>
+            <div class="content">
+                <p>JavaScript中NumberMAXSAFEINTEGER表示最大安全数字,计算结果是9007199254740991,即在这个数范围内不会出现精度丢失</p>
+            </div>
+        </div>
+        <div class="item">
+            <button>css常见问题</button>
+            <div class="content">
+                <p>JavaScript中NumberMAXSAFEINTEGER表示最大安全数字,计算结果是9007199254740991,即在这个数范围内不会出现精度丢失
+                    (小数除外)。但是一旦超过这个范围,js就会出现计算不准确的情况,这在大数计算的时候不得不依靠一些第三方库进行解决,因此官方提出了BigInt来解决此问题。</p>
+                <p>JavaScript中NumberMAXSAFEINTEGER表示最大安全数字,计算结果是9007199254740991,即在这个数范围内不会出现精度丢失
+                    (小数除外)。但是一旦超过这个范围,js就会出现计算不准确的情况,这在大数计算的时候不得不依靠一些第三方库进行解决,因此官方提出了BigInt来解决此问题。</p>
+            </div>
+        </div>
+        <div class="item">
+            <button>js常见问题</button>
+            <div class="content">
+                <p>JavaScript中NumberMAXSAFEINTEGER表示最大安全数字,计算结果是9007199254740991,即在这个数范围内不会出现精度丢失
+                    (小数除外)。但是一旦超过这个范围,js就会出现计算不准确的情况,这在大数计算的时候不得不依靠一些第三方库进行解决,因此官方提出了BigInt来解决此问题。</p>
+            </div>
+        </div>
+        <div class="item">
+            <button>闭包问题</button>
+            <div class="content">
+                <p>JavaScript中NumberMAXSAFEINTEGER表示最大安全数字,计算结果是9007199254740991,即在这个数范围内不会出现精度丢失
+                    (小数除外)。但是一旦超过这个范围,js就会出现计算不准确的情况,这在大数计算的时候不得不依靠一些第三方库进行解决,因此官方提出了BigInt来解决此问题。</p>
+            </div>
+        </div>
+        <div class="item">
+            <button>if问题</button>
+            <div class="content">
+                <p>JavaScript中NumberMAXSAFEINTEGER表示最大安全数字,计算结果是9007199254740991,即在这个数范围内不会出现精度丢失
+                    (小数除外)。但是一旦超过这个范围,js就会出现计算不准确的情况,这在大数计算的时候不得不依靠一些第三方库进行解决,因此官方提出了BigInt来解决此问题。</p>
+            </div>
+        </div>
+    </section>
+    <script>
+        // 1.点击谁展开谁
+        // 2.展开后再次点击关闭
+        // 3.点击下一个展开上一个关闭
+        const btnArr = document.querySelectorAll('button')
+        console.log(btnArr);
+        let last = btnArr[0]
+        btnArr.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                //contains == 包含的元素
+                if (btn.classList.contains('show')) {
+                    btn.classList.toggle('show')
+                } else {
+                    //点击的不是同一个按钮
+                    // last.classList.remove('show')
+                    btn.classList.add('show')
+                    last = btn
+                }
+
+                // // 修改上一个btn的maxheight=0
+                // last.nextElementSibling.style.maxHeight = '0px'
+                // //点击btn①修改nextElementsibling的height
+                // btn.nextElementSibling.style.maxHeight = '300px'
+                // last = btn
+            })
+        })
+    </script>
+</body>
+
+</html>
