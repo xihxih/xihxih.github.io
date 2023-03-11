@@ -19,6 +19,7 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+            gap: 5px;
         }
         .div1{
             background-color: black;
@@ -48,10 +49,12 @@
     var nb = document.querySelectorAll('.div1')
     for(var o = 0 ; o < nb.length ; o++){
         nb[o].onmouseover = function(){
-            
-            this.style.background = `rgb(${Color()},${Color()},${Color()})`
+            let color = `rgb(${Color()},${Color()},${Color()})`
+            this.style.background = color
+            this.style.boxShadow = `0 0 20px ${color}`
             setTimeout(ev=>{
                 this.style.background = ''  
+                this.style.boxShadow = ''
             },500)
         }
    }

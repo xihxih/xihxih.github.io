@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+      background-color: rgb(75, 71, 71);
+    }
+
+    .app {
+      max-width: 1000px;
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+      /* border: 1px solid black; */
+      /* background-color: aqua; */
+      padding: 20px;
+      /* justify-content: center; */
+    }
+
+    .loading .box {
+      width: 20px;
+      height: 50px;
+      background-color: blueviolet;
+      animation: loading .8s infinite;
+      margin-left: 10px;
+    }
+
+    .loading .box2 {
+      animation-delay: .1s;
+    }
+
+    .loading .box3 {
+      animation-delay: .2s;
+    }
+
+    .loading {
+      height: 200px;
+      width: 100%;
+      /* background-color: aqua; */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loading.wu {
+      display: none;
+    }
+
+    @keyframes loading {
+      0% {
+        height: 50px;
+      }
+
+      5% {
+        height: 80px;
+      }
+
+      80% {
+        height: 50px;
+      }
+
+      100% {
+        height: 50px;
+      }
+    }
+    .item{
+      margin: 10px 0;
+    }
+    .item p {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+
+  </div>
+  <div class="loading wu">
+    <div class="box box1">
+
+    </div>
+    <div class="box box2">
+
+    </div>
+    <div class="box box3">
+
+    </div>
+  </div>
+  <script>
+    // 初始化一个xhr的实例对象
+    const div = document.querySelector('.app')
+    const load = document.querySelector('.loading')
+    let totalNum 
+    let num = 1
+    function np(num) {
+      const xhr = new XMLHttpRequest();
+      loading()
+      // 利用实例对象xhr的open方法创建一个http请求
+      xhr.open("GET", `https://api.javascripttutorial.net/v1/quotes/?page=${num}&limit=10`, true);
+      
+      xhr.responseType = 'JSON'
+      // 利用xhr.send()方法发送请求
+      xhr.send();
+      // 考虑做什么
+      //  如何获取到服务器的响应
+      // 1.查询xhr的状态
+      xhr.onreadystatechange = function () {
+        // 注意获取数据的时间点
+
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          const data = JSON.parse(xhr.response);
+          console.log(data);
+          totalNum = data.total
+          render(data.data)
+          loadOwer()
+        }
+      };
+    }
+    np(num)
+    function render($data) {
+      for (item in $data) {
+        const box = document.createElement('div')
+        box.className = 'item'
+        box.innerHTML = `<span>${$data[item]['id']}</span>
+        <p>${$data[item]['quote']}</p>
+        <address>${$data[item]['author']}</address>`
+        div.appendChild(box)
+        if ($data[item]['id'] === totalNum) {
+          const over = document.createElement('p')
+          const hr = document.createElement('hr')
+          over.style.textAlign = 'center' 
+          over.innerHTML = '人家也是有底线的哦'
+          div.appendChild(hr)
+          div.appendChild(over)
+        }
+      }
+      // div.innerHTML = temp
+    }
+    function loading() {
+      load.classList.remove('wu')
+    }
+    function loadOwer() {
+      load.classList.add('wu')
+    }
+    document.addEventListener('scroll', ev => {
+      if (window.innerHeight + window.scrollY === div.scrollHeight && num * 10 < totalNum) {
+        num++
+        np(num)
+        // loadOwer()
+      }
+    })
+
+  </script>
+</body>
+
+</html>
