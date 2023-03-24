@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        label {
+            display: block;
+            margin: 10px;
+        }
+
+        .pag div button {
+            width: 50px;
+            height: 20px;
+            margin: 10px;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        p {
+            width: 200px;
+            height: 20px;
+            color: cornflowerblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="bookManager1">
+        <h1>政治类书单管理器</h1>
+        <form class="book-form" id="book-form">
+            <div>
+                <label for="title">标题</label>
+                <input type="text" id="title" class="">
+            </div>
+            <div>
+                <label for="title">作者</label>
+                <input type="text" id="author" class="">
+            </div>
+            <div>
+                <label for="title">isbn</label>
+                <input type="text" id="isbn" class="">
+            </div>
+            <div>
+                <input type="submit" value="提交">
+            </div>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>书籍</th>
+                    <th>作者</th>
+                    <th>ISBN</th>
+                    <th>备注</th>
+                </tr>
+            </thead>
+            <tbody class="book-list"></tbody>
+        </table>
+    </div>
+    <!-- 2 -->
+    <div id="bookmanager2">
+        <h1>政治类书单管理器</h1>
+        <!-- form：注册了submit事件 -->
+        <form class="book-form" id="book-form">
+            <div>
+                <label for="title">标题</label>
+                <input type="text" id="title" class="">
+            </div>
+            <div>
+                <label for="title">作者</label>
+                <input type="text" id="author" class="">
+            </div>
+            <div>
+                <label for="title">isbn</label>
+                <input type="text" id="isbn" class="">
+            </div>
+            <div>
+                <input type="submit" value="提交">
+            </div>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>书籍</th>
+                    <th>作者</th>
+                    <th>ISBN</th>
+                    <th>备注</th>
+                </tr>
+            </thead>
+            <tbody class="book-list">
+                <!--  -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const container = document.querySelector('#bookManager1')
+        console.log(container);
+        const list = container.querySelector(".book-list")
+        console.log(list);
+        // 创建一个书单管理器Book manager
+        const BookManager = function () {
+            // 需要具有哪些属性捏？
+
+
+        }
+        // 创建书
+        const Book = function (title, author, isbn) {
+            this.title = title;
+            this.author = author;
+            this.isbn = isbn;
+        }
+        // const book = new Book('fds', 'fds', 'fdsa')
+        // 添加书籍addBook
+        BookManager.prototype.addBook = function (book) {
+            const row = document.createElement('tr')
+            row.innerHTML =
+                `<td>${book.title}</td>
+            <td>${book.author}</td>
+            <td>${book.isbn}</td>
+            <td><a href="javascript:void(0)">删除</a></td>`
+            console.log(row,list);
+           list.appendChild(row)
+        }
+
+        // 删除deleteBook delete 
+        BookManager.prototype.deleteBook = function (target) {
+            target.parentElement.parentElement.remove()
+        }
+        // 添加submit 时间监听程序
+        const bookFrom = document.querySelector('#book-form')
+        bookFrom.addEventListener('submit', function (e) {
+            e.preventDefault()
+            // submit事件触发，要做什么？
+            const title = document.querySelector('#title').value
+            const author = document.querySelector('#author').value
+            const isbn = document.querySelector('#isbn').value
+
+            const book = new Book(title, author, isbn)
+            console.log(book);
+            // bm 实例对象
+            const bm = new BookManager()
+            bm.addBook(book)
+        })
+        // 添加click事件监听事件
+        // const bookList = document.querySelector('.book-list')
+        list.addEventListener('click', function (e) {
+            const bm = new BookManager()
+            bm.deleteBook(e.target)
+        })
+    </script>
+</body>
+
+</html>

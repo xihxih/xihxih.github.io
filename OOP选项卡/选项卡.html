@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用面向过程写选项卡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #tabs,
+        #tabs2 {
+            width: 500px;
+            height: 400px;
+            border: 1px solid black;
+        }
+
+        .tabs {
+            background-color: aqua;
+        }
+
+        button {
+            width: 100px;
+            height: 50px;
+            padding: 5px 20px;
+        }
+
+        .tabs-content {
+            position: relative;
+        }
+
+        .tabs-content div {
+            height: 350px;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+        }
+
+        .tabs-content .box1 {
+            background-color: aquamarine;
+            /* display: block; */
+        }
+
+        .tabs-content .box2 {
+            background-color: red;
+        }
+
+        .tabs-content .box3 {
+            background-color: blue;
+        }
+
+        .tabs-content div.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tabs">
+        <div class="tabs">
+            <button>栏目1</button>
+            <button>栏目2</button>
+            <button>栏目3</button>
+        </div>
+        <div class="tabs-content">
+            <div class="box1 active">内容1</div>
+            <div class="box2">内容2</div>
+            <div class="box3">内容3</div>
+        </div>
+    </div>
+    <div id="tabs2">
+        <div class="tabs">
+            <button>栏目1</button>
+            <button>栏目2</button>
+            <button>栏目3</button>
+        </div>
+        <div class="tabs-content">
+            <div class="box1 active">内容1</div>
+            <div class="box2">内容2</div>
+            <div class="box3">内容3</div>
+        </div>
+    </div>
+    <script>
+        function Tab(id) {
+            this.container = document.querySelector(id)
+            this.btn = this.container.querySelectorAll('button')
+            this.box = this.container.querySelectorAll('.tabs-content div')
+            this.last = 0
+        }       
+        Tab.prototype.Switch = function () {
+            this.btn.forEach((item, index) => {
+                item.addEventListener('click', ev => {
+                    this.box[this.last].classList.remove('active')
+                    this.box[index].classList.add('active')
+                    this.last = index
+                })
+            });
+        }
+        Tab.prototype.autoPlay = function () {
+            let This = this
+            window.setInterval(function () {
+                This.box[This.last].classList.remove('active')
+                This.last++
+                if(This.last === 3){
+                    This.last = 0
+                }
+                This.box[This.last].classList.add('active')
+            }, 2000)
+        }
+        const tab1 = new Tab('#tabs')
+        tab1.Switch()
+        tab1.autoPlay()
+        const tab2 = new Tab('#tabs2')
+        tab2.Switch()
+    </script>
+</body>
+
+</html>
