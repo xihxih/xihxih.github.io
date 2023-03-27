@@ -129,6 +129,9 @@
             <td>${book.author}</td>
             <td>${book.isbn}</td>
             <td><a href="javascript:void(0)">删除</a></td>`
+            document.querySelector('#title').value = ''
+            document.querySelector('#author').value = ''
+            document.querySelector('#isbn').value = ''
             console.log(row,list);
            list.appendChild(row)
         }

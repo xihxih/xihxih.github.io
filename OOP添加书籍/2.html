@@ -98,6 +98,9 @@
                     This.title = This.inputArr[0].value
                     This.author = This.inputArr[1].value
                     This.LSBN = This.inputArr[2].value
+                    This.inputArr[0].value = ''
+                    This.inputArr[1].value = ''
+                    This.inputArr[2].value = ''
                     This.tr = document.createElement("tr")
                     This.tr.innerHTML = `
                 <td>${This.title}</td>
