@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+  <body>
+    <%- include('./partials/nav.ejs') %>
+      <div class="container mt-5">
+
+        <!-- 下面是一张卡片 -->
+        <div class="row">
+          <div class="col-9">
+            <main>
+              <div>
+                <a href="/" class="delete btn btn-danger" data-bid="<%= blog._id%>">删除</a>
+              </div>
+              <div>
+                <img src="https://via.placeholder.com/600x400" class="img-fluid rounded-start" alt="...">
+              </div>
+              <h2 class="card-title">
+                <%= blog.title %>
+              </h2>
+              <div class="card-text">
+                <%= blog.body %>
+              </div>
+              <%= blog.author %>
+            </main>
+          </div>
+          <div class="col-3">
+            <aside>
+              <h3>七日热门</h3>
+              <div class="card">
+                <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">抖音、快手「兵临城下」，美团转攻为守.</p>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+      </div>
+      <%- include('./partials/footer.ejs') %>
+        <script>
+          const btn = document.querySelector('a.delete')
+          btn.addEventListener('click', () => {
+            const bid = btn.dataset.bid
+            const delurl = `/blog/${bid}`
+            fetch(delurl, { method: 'DELETE' })
+              .then(data => {
+                window.location.href = data.redirect
+              })
+              .catch(err => {
+                console.log(err);
+              })
+          })
+
+        </script>
+  </body>
+
+</html>

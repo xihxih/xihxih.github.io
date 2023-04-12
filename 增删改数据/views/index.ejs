@@ -1,0 +1,104 @@
+    <form class="row g-3 mt-5" action="/todo/add" method="POST">
+        <!-- <div class="col-auto">
+          <label for="staticEmail2" class="visually-hidden">Email</label>
+          <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">
+        </div> -->
+        <div class="col-auto">
+          <label for="inputPassword2" class="visually-hidden ml-2">输入任务</label>
+          <input type="text" name="title" class="form-control" id="inputPassword2" placeholder="请使用一句话描述任务">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">添加</button>
+            <!-- submit:会收集所有带着name的内容 -->
+        </div>
+      </form>
+
+<ul>
+    <div class="list-group">
+        <li type="button" class="list-group-item list-group-item-action active" aria-current="true">
+          任务清单
+        </li>
+       <!-- 数据data：数组 -->
+      <% data.forEach(item=>{%>
+        <li type="button" class="list-group-item list-group-item-action">
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-6">
+                   <!-- <p><%= item.title %></p> -->
+                   <input type="text" class="bianji form-control-plaintext" readonly  value=" <%= item.title %>">
+                  </div>
+                  <div class="col-6 d-flex flex-row-reverse">
+                      <button class="btn btnEdit btn-secondary">编辑</button>
+                      <button class="btn btnCancel btn-secondary d-none">取消</button>
+                      <button data-url= "/todo/update/<%= item._id %>"  class="btn btnSubmit btn-secondary d-none">确定</button>
+                     <a class="btn  btn-danger" href="/todo/delete/<%= item._id %>">删除</a>
+                  </div>
+              </div>
+          </div>
+      </li>
+      <% })%>
+      
+  </div>
+</ul>
+<script>
+  //获取到所有的编辑按钮
+  const flag = true
+  const btnbtnEditArr = document.querySelectorAll(".btnEdit")
+ //取消
+ const btnCancelArr = document.querySelectorAll(".btnCancel")
+ //确定
+ const btnSubmitArr = document.querySelectorAll(".btnSubmit")
+ //prr
+ const pArr = document.querySelectorAll("p")
+ //input
+ const bianjiApp = document.querySelectorAll(".bianji")
+ for(let i = 0; i<bianjiApp.length;i++){
+//一：点击编辑
+btnbtnEditArr[i].addEventListener("click",(ev)=>{
+     // //1.隐藏btn[i]
+     btnbtnEditArr[i].classList.add("d-none")
+    //2.显示btnCancel，btnSubmit
+    btnCancelArr[i].classList.toggle("d-none")
+    btnSubmitArr[i].classList.toggle("d-none")
+    //3.隐藏标题p元素，显示input元素
+    // bianjiApp[i].classList.toggle("d-none")
+    bianjiApp[i].classList.toggle("form-control-plaintext")
+    bianjiApp[i].readonly = !flag
+    })
+   //二：点击取消
+    btnCancelArr[i].addEventListener("click",()=>{
+     fn(i)
+    })
+    //三：点击确定
+    btnSubmitArr[i].addEventListener("click",(e)=>{
+      //使用Fetch API向服务器发起PUI请求（修改数据）
+      const uri = btnSubmitArr[i].dataset.url
+      console.log(uri);
+      const data = {title:bianjiApp[i].value}
+      const options = {
+        method:'PUT',
+        headers:{"Content-Type":"Application/json"},
+        body:JSON.stringify(data)
+      }
+      pArr[i].innerHTML = data.title
+      fetch(uri,options)
+      //重定向到首页，服务器需要返回 {redirect："/"}
+      .then((data)=> data.json())
+      .then(data=>{
+        window.location.href = data.redirect
+        fn(i)
+      })
+      .catch(err=>console.log(err))
+    })
+ }
+    function fn(i){
+    // //1.显示btn[0]
+     btnbtnEditArr[i].classList.toggle("d-none")
+    //2.隐藏btnCancel，btnSubmit
+    btnCancelArr[i].classList.toggle("d-none")
+    btnSubmitArr[i].classList.toggle("d-none")
+    //3.显示标题p元素，隐藏input元素
+    bianjiApp[i].classList.toggle("form-control-plaintext")
+    bianjiApp[i].readonly = !flag
+    }
+</script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head.ejs') %>
+
+  <body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="container mt-5">
+      
+        <!-- 下面是一张卡片 -->
+        <div class="row">
+          <div class="col-9">
+            <main>
+              <% blogs.forEach(art=>{ %>
+                <div class="card mb-3"">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img src="https://via.placeholder.com/300x200" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">
+                          <a href="/details/<%= art._id %>"><%= art.title %></a>
+                        </h5>
+                        <p class="card-text">
+                          <%= art.body %>
+                        </p>
+                        <p class="card-text"><small class="text-body-secondary"><%= art.author %></small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% }) %>
+            </main>
+          </div>
+          <div class="col-3">
+            <aside>
+              <h3>七日热门</h3>
+              <div class="card">
+                <img src="https://via.placeholder.com/200x150" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">抖音、快手「兵临城下」，美团转攻为守.</p >
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+        
+    </div>
+    <%- include('./partials/footer.ejs') %>
+  </body>
+
+</html>

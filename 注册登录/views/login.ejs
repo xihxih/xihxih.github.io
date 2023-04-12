@@ -1,0 +1,21 @@
+<div class="row mt-5">
+    <div class="col-4 m-auto">
+        <div class="card">
+            <div class="card-body">
+                <h3><i class="iconfont icon-zhanghaodenglu fs-1"></i>登录</h3>
+                <form action="/users/login" method="post">
+                    <div>
+                        <label for="username" class="form-label mt-3">账号</label>
+                        <input type="text" class="form-control mt-3" name="username" id="username">
+                    </div>
+                    <div>
+                        <label for="password" class="form-label mt-3">密码</label>
+                        <input type="password" name="password" id="password" class="form-control mt-3">
+                    </div>
+                    <button class="btn btn-primary mt-3">注册</button>
+                </form>
+                <p class="lead mt-3">没有注册？<a href="/users/register">注册</a></p>
+            </div>
+        </div>
+    </div>
+</div>
